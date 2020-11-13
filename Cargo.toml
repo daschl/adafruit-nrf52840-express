@@ -1,0 +1,12 @@
+[package]
+name = "adafruit-nrf52840-express"
+version = "0.1.0"
+authors = ["Michael Nitschinger <michael@nitschinger.at>"]
+edition = "2018"
+categories = ["embedded", "hardware-support", "no-std"]
+description = "Support for Adafruit nRF52840 Express Feather"
+keywords = ["arm", "cortex-m", "nrf52840", "hal"]
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+nrf52840-hal = "0.11.0"
