@@ -198,10 +198,26 @@ pub struct Board {
 }
 
 impl Board {
+    /// Take the peripherals safely
+    ///
+    /// This method will return an instance of this `Board` the first time it is
+    /// called. It will return only `None` on subsequent calls.
     pub fn take() -> Option<Self> {
         Some(Self::new(CorePeripherals::take()?, Peripherals::take()?))
     }
 
+    /// Steal the peripherals
+    ///
+    /// This method produces an instance of this `Board`, regardless of whether
+    /// another instance was create previously.
+    ///
+    /// # Safety
+    ///
+    /// This method can be used to create multiple instances of this `Board`. Those
+    /// instances can interfere with each other, causing all kinds of unexpected
+    /// behavior and circumventing safety guarantees in many ways.
+    ///
+    /// Always use `Board::take`, unless you really know what you're doing.
     pub unsafe fn steal() -> Self {
         Self::new(CorePeripherals::steal(), Peripherals::steal())
     }
